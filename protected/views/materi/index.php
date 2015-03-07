@@ -37,10 +37,12 @@
     <!--<button class="btn btn-warning btn-sm dropdown-toggle pull-right" >Bergabung <i class="glyphicon glyphicon-forward"></i></button>-->
     <br/>
     <?php
-    $this->widget('booster.widgets.TbListView', array(
-        'dataProvider' => $dataProvider,
-        'itemView' => 'view',
-    ));
+//    $this->widget('booster.widgets.TbListView', array(
+//        'dataProvider' => $dataProvider,
+//        'itemView' => 'view',
+//    ));
+    /* @var $this Controller */
+    $this->renderPartial('view', ['datas' => $dataProvider]);
 
     $this->endWidget();
     ?>
