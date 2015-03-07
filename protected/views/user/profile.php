@@ -1,0 +1,26 @@
+<section class="content">
+    <?php
+    $this->beginWidget('ext.Box', array(
+        'title' => 'Ganti Profile',
+        'sectionClass' => '7',
+    ));
+    ?>
+    <?php
+    $this->widget('bootstrap.widgets.TbAlert', array(
+//    'block' => false, // display a larger alert block?
+        'fade' => true, // use transitions?
+        'closeText' => '&times;', // close link text - if set to false, no close link is displayed
+        'alerts' => array(// configurations per alert type
+            'success' => array('block' => true, 'fade' => true, 'closeText' => '&times;'), //success, info, warning, error or danger
+            'info' => array('block' => true, 'fade' => true, 'closeText' => '&times;'), //success, info, warning, error or danger
+            'warning' => array('block' => true, 'fade' => true, 'closeText' => '&times;'), //success, info, warning, error or danger
+            'error' => array('block' => true, 'fade' => true, 'closeText' => '&times;'), //success, info, warning, error or danger
+            'danger' => array('block' => true, 'fade' => true, 'closeText' => '&times;'), //success, info, warning, error or danger
+        ),
+    ));
+    ?>
+    <?php
+    $this->renderPartial('//user/_profile', array('model' => $model));
+    $this->endWidget();
+    ?>
+</section>
