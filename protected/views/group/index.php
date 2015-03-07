@@ -61,7 +61,6 @@
                     ?>
                 </div>
                 <h4 class="box-title">
-
                     <a title="Klik Untuk Detail" data-toggle="collapse" data-parent="#accordion" href="#collapse-ke<?= $data->id ?>" class="<?= ($i == 0) ? "collapsed" : "" ?>">
                         <?= $data->nama_group ?>
                     </a>
@@ -70,7 +69,18 @@
             <div id="collapse-ke<?= $data->id ?>" class="panel-collapse collapse" style="height: 0px;">
                 <div class="box-body">
                     <?= $data->diskripsi ?>
-
+                    <?= CHtml::link('<span class="badge bg-yellow "><i class="fa fa-pencil-square-o "> </i> Ubah Group</span>', Yii::app()->createUrl('//group/update', array('id' => $data->id)), array('title' => 'Update')) ?>
+                    <?= CHtml::link('<span class="badge bg-green "><i class=" fa fa-building"> </i> Materi Detail</span>', Yii::app()->createUrl('//materi/index', array('id' => $data->id)), array('title' => 'Lihat Materi')) ?>
+                    <?=
+                    CHtml::link('<span class="badge bg-red"><i class="fa fa-trash-o"></i>  Hapus Group</span>', '#', array('title' => 'Delete',
+                        'onclick' => 'js:bootbox.confirm("<h3>Hapus Data </h3><br/>Anda Yakin Akan menghapus Group ini?",             
+                            function(confirmed){
+                        if(confirmed) {
+                            window.location = "' . Yii::app()->createUrl('//group/delete', array('id' => $data->id)) . '";
+                        }
+             })'
+                    ));
+                    ?>
                 </div>
             </div>
         </div>
