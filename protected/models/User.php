@@ -187,7 +187,7 @@ class User extends CActiveRecord {
         //$criteria->compare('id_pribadi', $this->id_pribadi, true);
         $criteria->compare('joinDate', $this->joinDate, true);
         $criteria->compare('status', $this->status, true);
-		$criteria->order="id desc";
+        $criteria->order = "id desc";
         //$criteria->compare('level_id', $this->level_id);
 
         return new CActiveDataProvider($this, array(
@@ -319,10 +319,9 @@ class User extends CActiveRecord {
 
         $opt = array('class' => 'img-circle', 'style' => 'width:45px; height:45px; margin:0 2px 2px 0;', 'title' => $nama);
         if ($i == 2) {
-//            array_merge($opt, array('class' => 'online'));
-            $opt = array('class' => '0');
+            //            array_merge($opt, array('class' => 'online'));
+            $opt = array('class' => 'offline');
         }
-
 
         if ($img == '') {
             return CHtml::image(Yii::app()->baseUrl . "/file/profile/avatar.png", $nama, $opt);
