@@ -5,8 +5,6 @@ $this->breadcrumbs = array(
     'Groups' => array('index'),
     'Create',
 );
-$this->beginWidget('ext.Box', array(
-    'title' => 'Buat Group Belajar'));
 
 //$this->menu = array(
 //    array('label' => 'List Group', 'url' => array('index')),
@@ -14,11 +12,8 @@ $this->beginWidget('ext.Box', array(
 //);
 ?>
 
-<?php $this->title = 'Group Belajar' ?>
+<?php $this->title = 'Tambah Group Belajar' ?>
 
-<?php echo $this->renderPartial('_form', array('model' => $model)); ?>
+<?=
 
-<?php
-
-$this->endWidget();
-
+$this->renderPartial('_form', array('model' => $model));

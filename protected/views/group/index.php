@@ -42,9 +42,6 @@
     foreach ($dataProvider as $data):
         ?>
         <div class="panel box box-success">
-
-
-
             <div class="box-header">
                 <div class="pull-right" style="margin-top: 10px; margin-right: 5px;">
                     <?= CHtml::link('<i class="badge bg-yellow fa fa-pencil-square-o "> </i>', Yii::app()->createUrl('//group/update', array('id' => $data->id)), array('title' => 'Update')) ?>
@@ -62,7 +59,7 @@
                 </div>
                 <h4 class="box-title">
                     <a title="Klik Untuk Detail" data-toggle="collapse" data-parent="#accordion" href="#collapse-ke<?= $data->id ?>" class="<?= ($i == 0) ? "collapsed" : "" ?>">
-    <?= $data->nama_group ?>
+                        <?= $data->nama_group ?>
                     </a>
                 </h4>
             </div>
@@ -113,5 +110,5 @@
             )
     );
     ?>
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 </section>
