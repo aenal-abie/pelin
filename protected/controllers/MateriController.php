@@ -152,7 +152,8 @@ class MateriController extends Controller {
         $cr = new CDbCriteria();
         $cr->compare('group_id', $id, false);
         $this->getNamaGroup($id);
-        $dataProvider = new CActiveDataProvider('Materi', array('criteria' => $cr));
+        //$dataProvider = new CActiveDataProvider('Materi', array('criteria' => $cr));
+        $dataProvider=  Materi::model()->findAll($cr);
         $this->menu = Materi::model()->list_materi($id);
 
         $cr = new CDbCriteria();
