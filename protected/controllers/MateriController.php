@@ -376,7 +376,7 @@ class MateriController extends Controller {
 
     public function getNamaGroup($id) {
         $data = Group::model()->findByPk($id);
-        $this->title = "Materi::" . $data->nama_group;
+        $this->title = "Nama Group ::" . $data->nama_group;
     }
 
 }
