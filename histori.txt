@@ -1,0 +1,31 @@
+05 Maret 2015
+    Update model materi,dosen
+    Contoller dan view baru Rekap.
+
+Rencana migrasi ke yii2
+26 Feb
+    Melakukan perbaikan pada pembuatan file dan tugas serta update file dan tugas
+    tidak boleh user lain melakukan update dan segalanya terhadap file orang..
+    -- File Controller
+    -- Tugas Controoller
+11 feb 
+	-- materi list tidak bisa diakses jika hak aksesnya adalah bukan dosen dan guest
+	-- dosen tidak boleh mengupdate group orang lain
+	-- Dosen tidak boleh mengupdate dan melihat materi orang lain
+	-- update semua yang dikerjakan dosen tidak dapat dilakukan oleh dosen(list materi, list_tugas).
+
+Update 7 feb(belum)
+	- View data dosen	
+	- Detail profile mahasiswa dan dosen
+	- kirim sms private antar user.
+	
+Update Pelin (6 feb 2015)(success)
+-- Model Dosen
+-- Controller User
+-- Model User
+-- component contoller
+-- theme/layouts/colum2
+-- perbaikan proses upload
+	-- tidak menemukan file
+	-- dowload oleh mahasiswa dengan menyembunyikan lokasi file
+-- urutan data pada pproses verifikasi mahasiswa 
