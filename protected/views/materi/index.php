@@ -32,7 +32,6 @@
     //$this->menu[] = array('label' => '<i class="fa fa-building-o"></i>Tambah Materi', 'url' => array('create'));
     ////    array('label' => 'Manage Materi', 'url' => array('admin')),
     ////);
-   
     ?>
 
     <!--<button class="btn btn-warning btn-sm dropdown-toggle pull-right" >Bergabung <i class="glyphicon glyphicon-forward"></i></button>-->
@@ -42,7 +41,7 @@
         'dataProvider' => $dataProvider,
         'itemView' => 'view',
     ));
-   
+
     $this->endWidget();
     ?>
 
