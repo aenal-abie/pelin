@@ -60,7 +60,7 @@ if (Yii::app()->user->isGuest) {
     echo '<table class="table table-striped">
     <tbody>
         <tr>
-            <th> ' . CHtml::link(User::model()->imglist($dataProvider->user->user->avatar, $dataProvider->user->user->nama_lengkap, 1),Yii::app()->createUrl('//peserta/profileDosen',['id'=>$dataProvider->user_id])) . '<a class="pull-right"></a></th>            
+            <th> ' . CHtml::link(User::model()->imglist($dataProvider->user->user->avatar, $dataProvider->user->user->nama_lengkap, 1), Yii::app()->createUrl('//peserta/profileDosen', ['id' => $dataProvider->user_id])) . '<a class="pull-right"></a></th>            
            
             <th style="vertical-align: middle">Dosen</th>
         </tr>
@@ -77,8 +77,8 @@ if (Yii::app()->user->isGuest) {
             <?php
             foreach ($peserta as $psr) :
                 ?>
-            
-                <?php echo CHtml::link(User::model()->imglist($psr->user->user->avatar, $psr->user->user->nama_lengkap, 1),  Yii::app()->createUrl('//peserta/profileMahasiswa',['id'=>$psr->user_id])) ?>
+
+                <?php echo CHtml::link(User::model()->imglist($psr->user->user->avatar, $psr->user->user->nama_lengkap, 1), Yii::app()->createUrl('//peserta/profileMahasiswa', ['id' => $psr->user_id])) ?>
                 <?php
             endforeach;
             ?>
