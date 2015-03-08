@@ -336,4 +336,24 @@ class User extends CActiveRecord {
         }
     }
 
+    public static function imglProfile($img = '', $nama = '', $i = 1) {
+        $opt = array('style' => 'width:200px; margin:0 2px 2px 0;', 'title' => $nama);
+        if ($i == 2) {
+            //            array_merge($opt, array('class' => 'online'));
+            $opt = array('class' => 'offline');
+        }
+
+        if ($img == '') {
+            return CHtml::image(Yii::app()->baseUrl . "/file/profile/avatar.png", $nama, $opt);
+        } else {
+            $Url = Yii::app()->baseUrl . "/file/profile/" . $img;
+            $file = realpath(Yii::app()->basePath . '/../file/profile') . DIRECTORY_SEPARATOR . $img;
+            if (file_exists($file)) {
+                return CHtml::image($Url, $nama, $opt);
+            } else {
+                return CHtml::image(Yii::app()->baseUrl . "/file/profile/avatar.png", $nama, $opt);
+            }
+        }
+    }
+
 }

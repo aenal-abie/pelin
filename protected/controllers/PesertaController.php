@@ -63,23 +63,23 @@ class PesertaController extends Controller {
         if (!is_object($ps)) {
             $model = new Peserta;
 
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
 
             $Peserta = array();
             $Peserta['group_id'] = $idGroup;
             $Peserta['status'] = 0;
             $Peserta['user_id'] = Yii::app()->user->id;
 
-//        if (isset($_POST['Peserta'])) {
-//        $model->attributes = $_POST['Peserta'];
+            //        if (isset($_POST['Peserta'])) {
+            //        $model->attributes = $_POST['Peserta'];
             $model->attributes = $Peserta;
             if ($model->save())
                 $this->redirect(array('//materi/list', 'id' => $idGroup));
-//        }
-//        $this->render('create', array(
-//            'model' => $model,
-//        ));
+            //        }
+            //        $this->render('create', array(
+            //            'model' => $model,
+            //        ));
         } else {
             $this->redirect(array('//materi/list', 'id' => $idGroup));
         }
@@ -93,8 +93,8 @@ class PesertaController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
         if (isset($_POST['Peserta'])) {
             $model->attributes = $_POST['Peserta'];
@@ -114,10 +114,10 @@ class PesertaController extends Controller {
      */
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
-// we only allow deletion via POST request
+            // we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
         } else
@@ -156,7 +156,7 @@ class PesertaController extends Controller {
             $this->redirect(array('//materi/index', 'id' => $group));
         } catch (Exception $e) {
             Yii::app()->user->setFlash('error', "{$e->getMessage()}");
-//$this->refresh();
+            //$this->refresh();
         }
     }
 
@@ -168,7 +168,7 @@ class PesertaController extends Controller {
             $this->redirect(array('//materi/index', 'id' => $group));
         } catch (Exception $e) {
             Yii::app()->user->setFlash('error', "{$e->getMessage()}");
-//$this->refresh();
+            //$this->refresh();
         }
     }
 
@@ -193,6 +193,33 @@ class PesertaController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function actionProfileDosen($id) {
+        $this->layout = '//layouts/column1';
+        $user = User::model()->findByPk($id);
+        /* cek Dosen */
+        $dosen = Dosen::model()->findByPk($id);
+        if (empty($dosen)) {
+            $this->redirect(array('//'));
+        }
+        /* @var $user User */
+        $this->title = 'Profile [' . $user->nama_lengkap . '][Dosen]';
+        $groups = Group::model()->findAll('user_id=:id', [':id' => $id]);
+        $this->render('profile_dosen', ['groups' => $groups, 'user' => $user]);
+    }
+
+    public function actionProfileMahasiswa($id) {
+        $mahasiswa = Mahasiswa::model()->findByPk($id);
+        if (empty($mahasiswa)) {
+            $this->redirect(array('//'));
+        }
+        $this->layout = '//layouts/column1';
+        $user = User::model()->findByPk($id);
+        /* @var $user User */
+        $this->title = 'Profile [' . $user->nama_lengkap . '][Mahasiswa]';
+        $groups = Peserta::model()->findAll('user_id=:id', [':id' => $id]);
+        $this->render('profile_mahasiswa', ['groups' => $groups, 'user' => $user]);
     }
 
 }

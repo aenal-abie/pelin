@@ -20,50 +20,24 @@ if (Yii::app()->user->isGuest) {
         'sectionClass' => '8',
     ));
     echo $dataProvider->diskripsi;
-//
-//foreach ($dataProvider->getData() as $data) {
-//    $this->menu[] = array('label' => $data->materi, 'url' => array('view', 'id' => $data->id));
-//}
-//
-////$this->menu = array(
-//$this->menu[] = array('label' => '<i class="fa fa-building-o"></i>Tambah Materi', 'url' => array('create'));
-////    array('label' => 'Manage Materi', 'url' => array('admin')),
-////);
     ?>
-
-<!--<button class="btn btn-warning btn-sm dropdown-toggle pull-right" >Bergabung <i class="glyphicon glyphicon-forward"></i></button>-->
     <br/>
     <?php
-//$this->widget('booster.widgets.TbListView', array(
-//    'dataProvider' => $dataProvider,
-//    'itemView' => 'view',
-//));
     $this->endWidget();
     ?>
-
     <?php
-//    $this->beginWidget('ext.Box', array(
-//        'title' => 'Diskusi',
-////        'cssBody' => 'no-padding',
-//        'sectionClass' => '7',
-//    ));
-    ?>
-
-    <?php
-//    $this->endWidget();
-
     $co = 1;
     $psr = Peserta::model()->isPeserta($id);
     if (Yii::app()->user->isGuest) {
-//        $this->renderPartial('//materi/_join', array('id' => $id));
+        //        $this->renderPartial('//materi/_join', array('id' => $id));
         $co = 0;
     } else
     if (!is_object($psr)) {
-//        $this->renderPartial('//materi/_join', array('id' => $id));
+        //        $this->renderPartial('//materi/_join', array('id' => $id));
         $co = 0;
     } else
     if ($psr->status == 0) {
-//        $this->renderPartial('//materi/_join', array('join' => 0));
+        //        $this->renderPartial('//materi/_join', array('join' => 0));
         $co = 0;
     }
 
@@ -86,8 +60,8 @@ if (Yii::app()->user->isGuest) {
     echo '<table class="table table-striped">
     <tbody>
         <tr>
-            <th> ' . User::model()->imglist($dataProvider->user->user->avatar, $dataProvider->user->user->nama_lengkap, 1) . '<a class="pull-right"></a></th>            
-            <th style="vertical-align: middle">' . $dataProvider->user->user->nama_lengkap . '</th>
+            <th> ' . CHtml::link(User::model()->imglist($dataProvider->user->user->avatar, $dataProvider->user->user->nama_lengkap, 1),Yii::app()->createUrl('//peserta/profileDosen',['id'=>$dataProvider->user_id])) . '<a class="pull-right"></a></th>            
+           
             <th style="vertical-align: middle">Dosen</th>
         </tr>
         </tbody></table>';
@@ -96,7 +70,6 @@ if (Yii::app()->user->isGuest) {
     <tbody>
         <tr>
             <th colspan="1">Daftar Peserta Group ini</th>
-            <!--<th><span class="pull-right">Jurusan</span></th> -->
         </tr>';
     ?>
     <tr>
@@ -104,39 +77,17 @@ if (Yii::app()->user->isGuest) {
             <?php
             foreach ($peserta as $psr) :
                 ?>
-                <?php echo User::model()->imglist($psr->user->user->avatar, $psr->user->user->nama_lengkap, 1) ?>
-
-        <!--       <td style="vertical-align: middle"><a title="<?php // echo $psr->user->user->username ?>" href="#"><?php echo $psr->user->user->nama_lengkap ?></a></td>
-                            <td  style="vertical-align: middle">
-                                <a class="pull-right"><?php // echo $psr->user->kodeNamaJurusan->nama_jurusan  ?></a>
-                            </td>-->
-
+            
+                <?php echo CHtml::link(User::model()->imglist($psr->user->user->avatar, $psr->user->user->nama_lengkap, 1),  Yii::app()->createUrl('//peserta/profileMahasiswa',['id'=>$psr->user_id])) ?>
                 <?php
             endforeach;
             ?>
         </td>
     </tr>
-    <?php
-    echo '
-</tbody></table>';
+    <?= '</tbody></table>'; ?>
 
-//
-//foreach ($dataProvider->getData() as $data) {
-//    $this->menu[] = array('label' => $data->materi, 'url' => array('view', 'id' => $data->id));
-//}
-//
-////$this->menu = array(
-//$this->menu[] = array('label' => '<i class = "fa fa-building-o"></i>Tambah Materi', 'url' => array('create'));
-////    array('label' => 'Manage Materi', 'url' => array('admin')),
-////);
-    ?>
-<!--<button class="btn btn-warning btn-sm dropdown-toggle pull-right" >Bergabung <i class="glyphicon glyphicon-forward"></i></button>-->
     <br/>
     <?php
-//$this->widget('booster.widgets.TbListView', array(
-//    'dataProvider' => $dataProvider,
-//    'itemView' => 'view',
-//));
     $this->endWidget();
     ?>
 
