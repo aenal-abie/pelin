@@ -115,7 +115,7 @@ class File extends CActiveRecord {
     public function listFile($id, $materi) {
         $cr = new CDbCriteria();
         $cr->compare('materi_id', $id);
-        $dataProvider = new CActiveDataProvider('File', array('criteria' => $cr));
+        $dataProvider = new CActiveDataProvider('File', array('criteria' => $cr, 'pagination' => array('pageSize' => 20,)));
         $menu = array();
         foreach ($dataProvider->getData() as $data) {
 //            echo $pmateri = $data->materi->group_id;
@@ -123,7 +123,7 @@ class File extends CActiveRecord {
             $file = realpath(Yii::app()->basePath . '/../file/materi') . DIRECTORY_SEPARATOR . $materi . DIRECTORY_SEPARATOR . $data->file;
             if (file_exists($file)) {
                 $fileSize = File::model()->formatSizeUnits(filesize($file));
-            } 
+            }
 
             $menu[] = array('label' => '<small class="pull-right badge bg-olive">' . $fileSize . '</small> <i class="glyphicon glyphicon-paperclip"></i>  ' . $data->file, 'url' => array('//file/update', 'id' => $data->id, 'materi' => $materi));
         }
