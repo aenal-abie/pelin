@@ -47,7 +47,7 @@
                                 array('label' => '<i class="fa fa-wrench"></i> Ganti Profile', 'url' => array('/user/changeProfile'), 'visible' => !Yii::app()->user->isGuest),
                                 array('label' => '<i class="fa fa-users"></i> Data Pengguna', 'url' => array('/user/index'), 'visible' => Yii::app()->user->checkAccess('Admin')),
                                 array('label' => '<i class="fa fa-users"></i> Hak Akses', 'url' => array('/rights/'), 'visible' => Yii::app()->user->checkAccess('Admin')),
-                            //                                array('label' => '<i class="icon-certificate"></i> Registrasi Pengguna', 'url' => array('/user/registrasi'), 'visible' => Yii::app()->user->checkAccess('Admin')),
+                                //                                array('label' => '<i class="icon-certificate"></i> Registrasi Pengguna', 'url' => array('/user/registrasi'), 'visible' => Yii::app()->user->checkAccess('Admin')),
                                 array('label' => '<i class="fa fa-wrench"></i> Ganti Password', 'url' => array('/user/changepass'), 'visible' => !Yii::app()->user->isGuest),
                             )
                         ),
@@ -107,6 +107,13 @@
                             <i class="glyphicon glyphicon-link"></i>
                             <span>Bergabung Pelin</span>
                         </a>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a href="<?php echo Yii::app()->createUrl('//site/lupa') ?>" class="dropdown-toggle" >
+                            <i class="glyphicon glyphicon-wrench"></i>
+                            <span>Lupa Password</span>
+                        </a>
+
                     </li>
                 </ul>
             <?php endif; ?>
