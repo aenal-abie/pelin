@@ -20,7 +20,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 <?php // echo $form->passwordFieldGroup($model, 'password_repeat', array('class' => 'span5', 'maxlength' => 100)); ?>
 <?php echo $form->textFieldGroup($model, 'nama_lengkap', array('widgetOptions' => array('class' => 'span5', 'maxlength' => 50))); ?>
 <?php // echo $form->dropDownListRow($model, 'id_pribadi', Pribadi::model()->getOptions(), array('class' => 'span5', 'maxlength' => 20)); ?>
-<?php // echo $form->textFieldGroup($model, 'email', array('class' => 'span5')); ?>
+<?php echo $form->textFieldGroup($model, 'email', array('class' => 'span5')); ?>
 <?php // echo $form->datePickerGroup($model, 'tglLahir', array('widgetOptions' =>array())); ?>
 <?php // $_level = array('1' => 'User', '2' => 'Admin'); ?>
 <?php

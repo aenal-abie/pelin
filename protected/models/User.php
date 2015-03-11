@@ -288,7 +288,7 @@ class User extends CActiveRecord {
         $mailer->Username = "support@stmikbumigora.ac.id";
         $mailer->Password = 'Masuk123';
         $mailer->From = "support@stmikbumigora.ac.id";
-        $mailer->FromName = "IKA ALUMNI STMIK Bumigora";
+        $mailer->FromName = "Pembelajaran Online [Ganti Password]";
         $mailer->AddAddress($email);
         $mailer->Subject = "Pergantian Password Pembelajaran Online";
         $mailer->Body = $msg;

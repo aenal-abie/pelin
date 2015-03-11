@@ -250,7 +250,7 @@ class UserController extends Controller {
         if (isset($_POST['User'])) {
             $transaction = Yii::app()->db->beginTransaction();
             try {
-                
+
                 $messageType = 'warning';
 //                echo $model->jenis;
                 $message = "There are some errors ";
@@ -286,7 +286,7 @@ class UserController extends Controller {
                      */
                     $transaction->commit();
                     Yii::app()->user->setFlash($messageType, $message);
-					//                    $this->redirect(array('index'));
+                    //                    $this->redirect(array('index'));
                 }
             } catch (Exception $e) {
                 $transaction->rollBack();
@@ -575,13 +575,16 @@ class UserController extends Controller {
 //            $name = $uploadFile->getName();
 //            if ($model->save()) {
 
+            $model->updateByPk($id, array('nama_lengkap' => $model->nama_lengkap,
+                'email' => $model->email));
             if (!empty($uploadFile)) {
 //                    $folder = $model->materi->group_id;
                 $extUploadFile = substr($uploadFile, strrpos($uploadFile, '.') + 1);
                 $file = realpath(Yii::app()->basePath . '/../file/profile') . DIRECTORY_SEPARATOR . $model->id . '.' . $extUploadFile;
                 if ($uploadFile->saveAs($file)) {
-                    $model->updateByPk($id, array('nama_lengkap' => $model->nama_lengkap,
-                        'avatar' => $model->id . '.' . $extUploadFile));
+                    $model->updateByPk($id, array(
+                        'avatar' => $model->id . '.' . $extUploadFile)
+                    );
                     Yii::app()->user->nama = $model->nama_lengkap;
 //                    $dpn = split(' ', Yii::app()->user->nama);
                     $messageType = 'success';
