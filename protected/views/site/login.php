@@ -27,10 +27,10 @@
             ),
         ));
         ?>
-
         <?php echo $form->textFieldGroup($model, 'username', array('widgetOptions' => array('options' => array(), 'htmlOptions' => array('autocomplete' => 'off', 'class' => 'span5')), 'prepend' => '<i class="glyphicon fa fa-users"></i>')); ?>
         <?php echo $form->passwordFieldGroup($model, 'password', array('widgetOptions' => array('options' => array(), 'htmlOptions' => array('class' => 'span5')), 'prepend' => '<i class="glyphicon fa fa-key"></i>')); ?>
         <?php echo $form->checkboxGroup($model, 'rememberMe'); ?>
+
 
         <div class="form-actions">
             <?php
@@ -41,6 +41,7 @@
                 'label' => 'Proses Login',
             ));
             ?>
+            <?php echo CHtml::link('<i class ="fa fa-wrench"></i> Reset lupa password !!! ', Yii::app()->createUrl('site/lupa'), array('class' => 'btn btn-flat btn-warning')); ?>
         </div>
 
 

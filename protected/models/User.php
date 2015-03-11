@@ -160,6 +160,10 @@ class User extends CActiveRecord {
                     'avatar' => 'Pilih Gambar Untuk Profile Anda',
                     'tglLahir' => 'Tanggal Lahir'
                 );
+            case 'reset' :
+                return array(
+                    'username' => 'Masukkan Email Anda',
+                );
         }
     }
 
@@ -276,12 +280,14 @@ class User extends CActiveRecord {
         $mailer->IsSMTP();
         $mailer->IsHTML(true);
         $mailer->SMTPAuth = true;
-        $mailer->SMTPSecure = "ssl";
-        $mailer->Host = "smtp.gmail.com";
-        $mailer->Port = 465;
-        $mailer->Username = "aenal.abie@gmail.com";
-        $mailer->Password = '4B13bcgoogle';
-        $mailer->From = "IKA Alumni";
+        $mailer->SMTPDebug = 0;
+        //$mailer->SMTPSecure = "ssl";
+        $mailer->Host = "mail.stmikbumigora.ac.id";
+        $mailer->Port = 25;
+        $mailer->Mailer = "smtp";
+        $mailer->Username = "alumni@stmikbumigora.ac.id";
+        $mailer->Password = '4b13bc';
+        $mailer->From = "alumni@stmikbumigora.ac.id";
         $mailer->FromName = "IKA ALUMNI STMIK Bumigora";
         $mailer->AddAddress($email);
         $mailer->Subject = "IKA Alumni - Aktivasi Akun.";

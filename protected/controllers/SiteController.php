@@ -9,13 +9,13 @@ class SiteController extends Controller {
      */
     public function actions() {
         return array(
-            // captcha action renders the CAPTCHA image displayed on the contact page
+// captcha action renders the CAPTCHA image displayed on the contact page
             'captcha' => array(
                 'class' => 'CCaptchaAction',
                 'backColor' => 0xFFFFFF,
             ),
             // page action renders "static" pages stored under 'protected/views/site/pages'
-            // They can be accessed via: index.php?r=site/page&view=FileName
+// They can be accessed via: index.php?r=site/page&view=FileName
             'page' => array(
                 'class' => 'CViewAction',
             ),
@@ -33,8 +33,8 @@ class SiteController extends Controller {
         $this->menu = Group::model()->terbaru();
         $cr = new CDbCriteria();
         $cr->order = 'id desc';
-        // renders the view file 'protected/views/site/index.php'
-        // using the default layout 'protected/views/layouts/main.php'
+// renders the view file 'protected/views/site/index.php'
+// using the default layout 'protected/views/layouts/main.php'
         $dataProvider = new CActiveDataProvider('Pengumuman', array(
             'pagination' => array(
                 'pageSize' => 3,
@@ -106,22 +106,22 @@ class SiteController extends Controller {
         $model = new LoginForm;
         $this->menu = Group::model()->terbaru();
         $this->layout = '//layouts/column2n';
-        // if it is ajax validation request
+// if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
 
-        // collect user input data
+// collect user input data
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
-            // validate user input and redirect to the previous page if valid
+// validate user input and redirect to the previous page if valid
             if ($model->validate() && $model->login())
                 $this->redirect(Yii::app()->user->returnUrl);
         }
 
         $data = Group::model()->random()->findAll();
-        // display the login form
+// display the login form
         $this->render('login', array('model' => $model, 'data' => $data));
     }
 
@@ -145,7 +145,7 @@ class SiteController extends Controller {
                 $messageType = 'warning';
                 $message = "There are some errors ";
                 $model->attributes = $_POST['User'];
-                //$uploadFile=CUploadedFile::getInstance($model,'filename');
+//$uploadFile=CUploadedFile::getInstance($model,'filename');
                 $key = User::hashPassword($model->nama_lengkap);
                 $model->active_key = User::safeurl($key);
                 $model->joinDate = date('Y-m-d H:i:s');
@@ -158,7 +158,7 @@ class SiteController extends Controller {
                     $mhs->insert();
                     Rights::assign('Mahasiswa', $model->id, NULL, 'N;');
                     $messageType = 'success';
-//                    $message = "<strong>Well done!</strong> Silahkan cek email anda untuk mengaktifkan user anda";
+//$message = "<strong>Well done!</strong> Silahkan cek email anda untuk mengaktifkan user anda";
                     $message = "<strong>Well done!</strong> Silahkan Login untuk kegiatan pembelajaran lebih lanjut";
                     /*
                       $model2 = User::model()->findByPk($model->id);
@@ -190,7 +190,7 @@ class SiteController extends Controller {
             } catch (Exception $e) {
                 $transaction->rollBack();
                 Yii::app()->user->setFlash('error', "{$e->getMessage()}");
-                //$this->refresh();
+//$this->refresh();
             }
         }
         $data = Group::model()->random()->findAll();
@@ -224,6 +224,51 @@ class SiteController extends Controller {
 
         $data = Group::model()->random()->findAll();
         $this->render('read', array('info' => $info, 'list' => $data,));
+    }
+
+    public function actionLupa() {
+        $model = new Reset();
+        $success = FALSE;
+        $ketemu = 0;
+        $this->menu = Group::model()->terbaru();
+        $this->layout = '//layouts/column2n';
+        // if it is ajax validation request
+        if (isset($_POST['Reset'])) {
+            $user = User::model()->find('email=:email', [':email' => $_POST['Reset']['email']]);
+            if (is_object($user)) {
+                /* @var $user User */
+                $password = $this->generateRandomString(10);
+                $user->password = $password;
+                $user->save();
+                User::KirimemailAktivasi('Password Baru Anda adalah : ' . $password, $user->email);
+                $success = TRUE;
+                $ketemu = 2;
+            } else {
+                $ketemu = 1;
+            }
+        }
+
+        // collect user input data
+        if (isset($_POST['LoginForm'])) {
+            $model->attributes = $_POST['LoginForm'];
+            // validate user input and redirect to the previous page if valid
+            if ($model->validate() && $model->login())
+                $this->redirect(Yii::app()->user->returnUrl);
+        }
+
+        $data = Group::model()->random()->findAll();
+        // display the login form
+        $this->render('lupa', array('model' => $model, 'data' => $data, 'success' => $success, 'ketemu' => $ketemu));
+    }
+
+    private function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 }
