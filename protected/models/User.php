@@ -63,6 +63,7 @@ class User extends CActiveRecord {
             array('password,password_repeat,jurusan', 'required', 'on' => 'register'),
             array('password', 'length', 'min' => 6),
             array('username,email', 'unique'),
+            array('email', 'unique', 'on' => 'profile'),
             array('email', 'email'),
             array('password', 'compare', 'on' => 'register,create'),
             array('password_repeat', 'safe', 'on' => 'register,create'),
