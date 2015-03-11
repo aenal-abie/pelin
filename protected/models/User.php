@@ -285,12 +285,12 @@ class User extends CActiveRecord {
         $mailer->Host = "mail.stmikbumigora.ac.id";
         $mailer->Port = 25;
         $mailer->Mailer = "smtp";
-        $mailer->Username = "alumni@stmikbumigora.ac.id";
-        $mailer->Password = '4b13bc';
-        $mailer->From = "alumni@stmikbumigora.ac.id";
+        $mailer->Username = "support@stmikbumigora.ac.id";
+        $mailer->Password = 'Masuk123';
+        $mailer->From = "support@stmikbumigora.ac.id";
         $mailer->FromName = "IKA ALUMNI STMIK Bumigora";
         $mailer->AddAddress($email);
-        $mailer->Subject = "IKA Alumni - Aktivasi Akun.";
+        $mailer->Subject = "Pergantian Password Pembelajaran Online";
         $mailer->Body = $msg;
         $mailer->Send();
         //if ($mailer->Send()) {
