@@ -9,7 +9,6 @@
 
 		<?php echo $form->datePickerGroup($model,'tgl_lahir',array('widgetOptions'=>array('options'=>array(),'htmlOptions'=>array('class'=>'span5')), 'prepend'=>'<i class="glyphicon glyphicon-calendar"></i>', 'append'=>'Click on Month/Year to select a different Month/Year.')); ?>
 
-		<?php echo $form->textFieldGroup($model,'photo',array('widgetOptions'=>array('htmlOptions'=>array('class'=>'span5','maxlength'=>45)))); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('booster.widgets.TbButton', array(

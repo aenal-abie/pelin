@@ -7,7 +7,6 @@
  * @property integer $user_id
  * @property integer $kode_nama_jurusan
  * @property string $tgl_lahir
- * @property string $photo
  *
  * The followings are the available model relations:
  * @property NamaJurusan $kodeNamaJurusan
@@ -32,10 +31,9 @@ class Mahasiswa extends CActiveRecord {
         return array(
             array('user_id, kode_nama_jurusan', 'required'),
             array('user_id, kode_nama_jurusan', 'numerical', 'integerOnly' => true),
-            array('photo', 'length', 'max' => 45),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('user_id, kode_nama_jurusan, tgl_lahir, photo', 'safe', 'on' => 'search'),
+            array('user_id, kode_nama_jurusan, tgl_lahir', 'safe', 'on' => 'search'),
         );
     }
 
@@ -60,7 +58,7 @@ class Mahasiswa extends CActiveRecord {
             'user_id' => 'User',
             'kode_nama_jurusan' => 'Kode Nama Jurusan',
             'tgl_lahir' => 'Tgl Lahir',
-            'photo' => 'Photo',
+            
         );
     }
 
@@ -84,7 +82,6 @@ class Mahasiswa extends CActiveRecord {
         $criteria->compare('user_id', $this->user_id);
         $criteria->compare('kode_nama_jurusan', $this->kode_nama_jurusan);
         $criteria->compare('tgl_lahir', $this->tgl_lahir, true);
-        $criteria->compare('photo', $this->photo, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

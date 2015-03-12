@@ -6,7 +6,7 @@ class MahasiswaController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
+    public $layout = '//layouts/column1';
 
     /**
      * @return array action filters
@@ -116,16 +116,6 @@ class MahasiswaController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Mahasiswa');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
         $model = new Mahasiswa('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Mahasiswa']))
@@ -134,6 +124,13 @@ class MahasiswaController extends Controller {
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    /**
+     * Manages all models.
+     */
+    public function actionAdmin() {
+        
     }
 
     /**
