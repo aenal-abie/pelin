@@ -3,6 +3,9 @@
         .list-view{
             margin-top: -50px;
         }
+		.box .box-body {
+			margin-top: 0px;
+		}
     </style>
     <?php
     $this->beginWidget('ext.Box', array(
@@ -48,7 +51,11 @@
     ?>
 
 </section>
-
+<style>
+.box .box-body {
+margin-top: 0px;
+}
+</style>
 <section class="col-lg-4 connectedSortable">
     <?php
     $this->beginWidget('ext.Box', array(
