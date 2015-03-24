@@ -1,5 +1,5 @@
 <header class="header">
-    <a href="<?php echo Yii::app()->baseUrl ?>" class="logo">
+    <a href="<?php echo Yii::app()->createUrl('site/index') ?>" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
         <i class="glyphicon glyphicon-link"></i>Pembelajaran Online
     </a>
