@@ -214,14 +214,14 @@ class TugasController extends Controller {
         );
         try {
             $download = new chip_download($args);
-//            print_r($args);
+            //            print_r($args);
             $download_hook = $download->get_download_hook();
             if ($download_hook['download'] == TRUE) {
-//                echo 'udah';
+                //              echo 'udah';
                 /* You can write your logic before proceeding to download */
 
                 /* Let's download file */
-//                $download->chip_print($download_hook);
+                //                $download->chip_print($download_hook);
                 $download->get_download();
             }
         } catch (Exception $ex) {

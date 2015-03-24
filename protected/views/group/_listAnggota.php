@@ -9,7 +9,8 @@
                     <?php echo User::model()->imglist($psr->user->user->avatar, $psr->user->user->nama_lengkap, 1) ?>
                 <td style="vertical-align: middle" >
                     <?php /* @var $psr  Peserta */ ?>
-                    <a title="<?php echo $psr->user->user->username ?>" href="<?= Yii::app()->createUrl('//peserta/profileMahasiswa', ['id' => $psr->user_id]) ?>">
+                    
+                    <a  data-toggle="tooltip" title="" data-original-title="<?php echo $psr->user->user->username ." - ". $psr->user->kodeNamaJurusan->nama_jurusan  ?>" href="<?= Yii::app()->createUrl('//peserta/profileMahasiswa', ['id' => $psr->user_id]) ?>">
                         <?php echo $psr->user->user->nama_lengkap ?></a></td>    
                 </td>
                 <td style="width: 70px; vertical-align: middle" >
