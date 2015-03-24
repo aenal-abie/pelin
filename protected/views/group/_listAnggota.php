@@ -1,6 +1,6 @@
 <table class="table table-striped ">
     <tbody><tr>
-            <th colspan="2">Nama Anggota</th>
+            <th colspan="2"><?php echo count($anggota) ?> Anggota Bergabung</th>
             <th style="text-align: right">Status</th>
         </tr>
         <?php foreach ($anggota as $psr) : ?>
