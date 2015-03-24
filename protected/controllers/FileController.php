@@ -174,7 +174,9 @@ class FileController extends Controller {
 
         $this->loadModel($id)->delete();
         $filename = realpath(Yii::app()->basePath . '/../file/materi') . DIRECTORY_SEPARATOR . $group . DIRECTORY_SEPARATOR . $data->file;
-        unlink($filename);
+        if(file_exists($filename)){
+            unlink($filename);
+        }
         $messageType = 'success';
         $message = "<strong>Well done!</strong> You successfully delete data ";
         Yii::app()->user->setFlash($messageType, $message);
