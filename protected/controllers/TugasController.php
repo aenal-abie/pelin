@@ -77,8 +77,8 @@ class TugasController extends Controller {
                 $message = "<strong>Well done!</strong> You successfully create data ";
                 if (isset($_POST['Tugas'])) {
                     $uploadFile = CUploadedFile::getInstance($model, 'file_pendukung');
-                    $name = $uploadFile->getName();
                     if (!empty($uploadFile)) {
+                        $name = $uploadFile->getName();
                         $fl = realpath(Yii::app()->basePath . '/../file/pendukung/');
                         $location = $fl . '/' . $model->id;
                         if (!file_exists($location)) {
@@ -131,8 +131,8 @@ class TugasController extends Controller {
                 $messageType = 'success';
                 $message = "<strong>Well done!</strong> You successfully update data ";
                 $uploadFile = CUploadedFile::getInstance($model, 'file_pendukung');
-                $name = $uploadFile->getName();
                 if (!empty($uploadFile)) {
+                    $name = $uploadFile->getName();
                     $fl = realpath(Yii::app()->basePath . '/../file/pendukung/');
                     $location = $fl . '/' . $model->id;
                     if (!file_exists($location)) {
