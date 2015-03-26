@@ -50,7 +50,11 @@ $this->widget('bootstrap.widgets.TbAlert', array(
         'sectionClass' => '5',
     ));
     ?>
-
+    <?php if ($dtl->file_pendukung != ''): ?>
+        <?php $file = realpath(Yii::app()->basePath . '/../file/pendukung') . '/' . $dtl->id . '/' . $dtl->file_pendukung; ?>
+        Silhakan download file di bawah  ini sebelum anda mengerjakan tugas. <br/> <a href="<?= Yii::app()->createUrl('tugas/downloadFile', array('id' => $dtl->id)) ?>" ><?= '<i class="fa fa-download"> </i> '. $dtl->file_pendukung  ?></a> <span class="badge pull-right"><?= File::model()->formatSizeUnits(filesize($file)) ?></span>
+        <hr/>
+    <?php endif; ?>
     <?php // echo date('Y-m-d H:i:s');  ?>
     <span class="pull-right  ">[ Hanya file jenis PDF, DOC, DOCX, ODF, ZIP, RAR,7Zip yang bisa anda Uplaod ]</span>
     <br/><br/>
@@ -60,10 +64,10 @@ $this->widget('bootstrap.widgets.TbAlert', array(
         <a  href="<?php echo Yii::app()->createUrl('//tugas/download', array('id' => $tgs->id)) ?>"
             class="badge bg-olive"><i class="fa fa-download"></i>  Download File</a>&nbsp;&nbsp;
 
-                                                                        <!--<a target="_blank" href="<?php // echo Yii::app()->baseUrl . '/file/tugas/' . $tgs->tugas_id . '/' . $tgs->filename                          ?>"-->
-                                                                            <!--class="badge bg-olive"><i class="fa fa-download"></i>  Download File</a>&nbsp;&nbsp;-->
+                                                                                            <!--<a target="_blank" href="<?php // echo Yii::app()->baseUrl . '/file/tugas/' . $tgs->tugas_id . '/' . $tgs->filename                               ?>"-->
+                                                                                                <!--class="badge bg-olive"><i class="fa fa-download"></i>  Download File</a>&nbsp;&nbsp;-->
 
-                                                                     <!--<a class="badge bg-aqua upload"><i class="fa fa-upload"></i> Upload Ulang</a>-->
+                                                                                         <!--<a class="badge bg-aqua upload"><i class="fa fa-upload"></i> Upload Ulang</a>-->
         <br/><br/>
         <?php if ($selesai) : ?>
             <p class="small">

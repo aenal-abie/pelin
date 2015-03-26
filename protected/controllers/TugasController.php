@@ -75,8 +75,29 @@ class TugasController extends Controller {
             if ($model->save()) {
                 $messageType = 'success';
                 $message = "<strong>Well done!</strong> You successfully create data ";
-                Yii::app()->user->setFlash($messageType, $message);
-                $this->redirect(array('//tugas/create', 'id' => $id, 'materi' => $materi));
+                if (isset($_POST['Tugas'])) {
+                    $uploadFile = CUploadedFile::getInstance($model, 'file_pendukung');
+                    $name = $uploadFile->getName();
+                    if (!empty($uploadFile)) {
+                        $fl = realpath(Yii::app()->basePath . '/../file/pendukung/');
+                        $location = $fl . '/' . $model->id;
+                        if (!file_exists($location)) {
+                            mkdir($location);
+                            copy($fl . '/ic.php', $location . '/index.php');
+                        }
+                        $file = $location . DIRECTORY_SEPARATOR . $name;
+                        if ($uploadFile->saveAs($file)) {
+                            $model->file_pendukung = $name;
+                            $model->save();
+                            $message .= 'and file uploded';
+                        } else {
+                            $messageType = 'warning';
+                            $message .= 'but file not uploded';
+                        }
+                    }
+                    Yii::app()->user->setFlash($messageType, $message);
+                    $this->redirect(array('//tugas/create', 'id' => $id, 'materi' => $materi));
+                }
             }
         }
         $this->menu = Tugas::model()->listTugas($id, $materi);
@@ -109,6 +130,25 @@ class TugasController extends Controller {
             if ($model->save()) {
                 $messageType = 'success';
                 $message = "<strong>Well done!</strong> You successfully update data ";
+                $uploadFile = CUploadedFile::getInstance($model, 'file_pendukung');
+                $name = $uploadFile->getName();
+                if (!empty($uploadFile)) {
+                    $fl = realpath(Yii::app()->basePath . '/../file/pendukung/');
+                    $location = $fl . '/' . $model->id;
+                    if (!file_exists($location)) {
+                        mkdir($location);
+                        copy($fl . '/ic.php', $location . '/index.php');
+                    }
+                    $file = $location . DIRECTORY_SEPARATOR . $name;
+                    if ($uploadFile->saveAs($file)) {
+                        $model->file_pendukung = $name;
+                        $model->save();
+                        $message .= 'and file uploded';
+                    } else {
+                        $messageType = 'warning';
+                        $message .= 'but file not uploded';
+                    }
+                }
                 Yii::app()->user->setFlash($messageType, $message);
                 $this->redirect(array('//tugas/create', 'id' => $materi, 'materi' => $group));
             }
@@ -204,6 +244,46 @@ class TugasController extends Controller {
             $message = "<strong>Not done!</strong> File not found";
             Yii::app()->user->setFlash($messageType, $message);
             $this->redirect(array('//materi/tugas', 'id' => $model->tugas_id));
+        }
+        $args = array(
+            'download_path' => $download_path,
+            'file' => $file,
+            'extension_check' => false,
+            'referrer_check' => FALSE,
+            'referrer' => NULL,
+        );
+        try {
+            $download = new chip_download($args);
+            //            print_r($args);
+            $download_hook = $download->get_download_hook();
+            if ($download_hook['download'] == TRUE) {
+                //              echo 'udah';
+                /* You can write your logic before proceeding to download */
+
+                /* Let's download file */
+                //                $download->chip_print($download_hook);
+                $download->get_download();
+            }
+        } catch (Exception $ex) {
+            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        }
+    }
+
+    public function actionDownloadFile($id) {
+        error_reporting(-1);
+        Yii::import('ext.chip_download');
+        /* @var $model Tugas */
+        $model = Tugas::model()->find('id=:id', array(':id' => $id));
+        //        print_r($model);
+
+
+        $file = $model->file_pendukung;
+        $download_path = realpath(Yii::app()->basePath . '/../file/pendukung') . '/' . $model->id . '/';
+        if (!file_exists($download_path . $file)) {
+            $messageType = 'error';
+            $message = "<strong>Not done!</strong> File not found";
+            Yii::app()->user->setFlash($messageType, $message);
+            $this->redirect(array('//materi/tugas', 'id' => $model->id));
         }
         $args = array(
             'download_path' => $download_path,

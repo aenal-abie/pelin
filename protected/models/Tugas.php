@@ -10,6 +10,7 @@
  * @property string $waktu_selesai
  * @property string $diskripsi
  * @property string $jenis
+ * @property string $file_pendukung
  *
  * The followings are the available model relations:
  * @property Materi $materi
@@ -61,6 +62,7 @@ class Tugas extends CActiveRecord {
             'diskripsi' => 'Diskripsi',
             'jenis' => 'Jenis',
             'judul' => 'Title Tugas',
+            'file_pendukung' => 'Upload File Pendukung (Max 5 MB)',
         );
     }
 

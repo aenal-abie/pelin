@@ -2,7 +2,9 @@
 $form = $this->beginWidget('booster.widgets.TbActiveForm', array(
     'id' => 'tugas-form',
     'enableAjaxValidation' => false,
+    'htmlOptions' => array('enctype' => 'multipart/form-data'),
         ));
+/* @var $form TbActiveForm  */
 ?>
 
 <!--<p class="help-block">Fields with <span class="required">*</span> are required.</p>-->
@@ -14,8 +16,11 @@ $form = $this->beginWidget('booster.widgets.TbActiveForm', array(
 
 <?php echo $form->textAreaGroup($model, 'diskripsi', array('widgetOptions' => array('htmlOptions' => array('rows' => 6, 'cols' => 50, 'class' => 'span8')))); ?>
 
+<?php echo '<span class="badge bg-red pull-right"> Waktu Server : ' . date('d-m-Y') .' Pukul '. date('h:i:s') . '</span>'; ?>
+
 <?php echo $form->dateTimePickerGroup($model, 'waktu_selesai', array('widgetOptions' => array('htmlOptions' => array('class' => 'span5')))); ?>
 
+<?php echo $form->fileFieldGroup($model, 'file_pendukung', array('widgetOptions' => array('htmlOptions' => array('class' => 'span5')))); ?>
 
 
 <?php // echo $form->textFieldGroup($model, 'jenis', array('widgetOptions' => array('htmlOptions' => array('class' => 'span5', 'maxlength' => 20)))); ?>
